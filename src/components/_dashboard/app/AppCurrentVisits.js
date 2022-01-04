@@ -63,9 +63,10 @@ export default function AppCurrentVisits() {
 
   return (
     <Card>
-      <CardHeader title="Current Visits" />
+      <CardHeader title="Project" />
       <ChartWrapperStyle dir="ltr">
-        <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
+        This is where we will describe what the project is, and how we came up with it. Description
+        of the project, the thrones and art direction, and what makes it unique.
       </ChartWrapperStyle>
     </Card>
   );

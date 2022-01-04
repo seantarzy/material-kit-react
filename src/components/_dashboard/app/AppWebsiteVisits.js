@@ -1,10 +1,10 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
-import { Card, CardHeader, Box } from '@mui/material';
+import { Card, CardHeader, Box, CardMedia } from '@mui/material';
 //
 import { BaseOptionChart } from '../../charts';
-
+import ThronesBanner from '../../../assets/thrones-mockup-site-wide-image.png';
 // ----------------------------------------------------------------------
 
 const CHART_DATA = [
@@ -60,9 +60,9 @@ export default function AppWebsiteVisits() {
 
   return (
     <Card>
-      <CardHeader title="Website Visits" subheader="(+43%) than last year" />
+      <CardHeader title="Project" subheader="(+43%) than last year" />
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-        <ReactApexChart type="line" series={CHART_DATA} options={chartOptions} height={364} />
+        <CardMedia component="img" height="194" image={ThronesBanner} alt="Thrones" />
       </Box>
     </Card>
   );

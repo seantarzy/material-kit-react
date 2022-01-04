@@ -8,38 +8,55 @@ import {
   TimelineContent,
   TimelineConnector,
   TimelineSeparator,
-  TimelineDot
+  TimelineDot,
+  TimelineOppositeContent
 } from '@mui/lab';
 // utils
+import { Icon } from '@iconify/react';
 import { fDateTime } from '../../../utils/formatTime';
 
 // ----------------------------------------------------------------------
 
 const TIMELINES = [
   {
-    title: '1983, orders, $4220',
+    title: '20%',
     time: faker.date.past(),
-    type: 'order1'
+    type: 'order1',
+    iconType: 'si-glyph:chair-1',
+    summary: 'Make the Thrones',
+    alignSide: 'left'
   },
   {
-    title: '12 Invoices have been paid',
+    title: '40%',
     time: faker.date.past(),
-    type: 'order2'
+    type: 'order2',
+    iconType: 'noto:coin',
+    summary: ' Thrones will be randomly airdropped to our early adopters',
+    alignSide: 'right'
   },
   {
-    title: 'Order #37745 from September',
+    title: '60%',
     time: faker.date.past(),
-    type: 'order3'
+    type: 'order3',
+    iconType: 'emojione-v1:money-bag',
+    summary: 'Make a lot of money',
+    alignSide: 'left'
   },
   {
-    title: 'New order placed #XF-2356',
+    title: '80%',
     time: faker.date.past(),
-    type: 'order4'
+    type: 'order4',
+    iconType: 'emojione:shopping-bags',
+    summary: 'Exclusive merch drop for our holders',
+    alignSide: 'right'
   },
   {
-    title: 'New order placed #XF-2346',
+    title: '100%',
     time: faker.date.past(),
-    type: 'order5'
+    type: 'order5',
+    iconType: 'noto:coin',
+    summary: 'Yachts and shit',
+    alignSide: 'left'
   }
 ];
 
@@ -51,26 +68,25 @@ OrderItem.propTypes = {
 };
 
 function OrderItem({ item, isLast }) {
-  const { type, title, time } = item;
+  const { type, title, time, summary, iconType, alignSide } = item;
   return (
     <TimelineItem>
+      <TimelineOppositeContent
+        sx={{ m: 'auto 0' }}
+        align={alignSide}
+        variant="body2"
+        color="text.secondary"
+      >
+        {title}
+      </TimelineOppositeContent>
       <TimelineSeparator>
-        <TimelineDot
-          sx={{
-            bgcolor:
-              (type === 'order1' && 'primary.main') ||
-              (type === 'order2' && 'success.main') ||
-              (type === 'order3' && 'info.main') ||
-              (type === 'order4' && 'warning.main') ||
-              'error.main'
-          }}
-        />
-        {isLast ? null : <TimelineConnector />}
+        <TimelineConnector />
+        <Icon icon={iconType} />
+        <TimelineConnector />
       </TimelineSeparator>
-      <TimelineContent>
-        <Typography variant="subtitle2">{title}</Typography>
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-          {fDateTime(time)}
+      <TimelineContent sx={{ py: '12px', px: 2 }}>
+        <Typography variant="h6" component="span">
+          {summary}
         </Typography>
       </TimelineContent>
     </TimelineItem>
@@ -86,9 +102,9 @@ export default function AppOrderTimeline() {
         }
       }}
     >
-      <CardHeader title="Order Timeline" />
+      <CardHeader title="Roadmap" />
       <CardContent>
-        <Timeline>
+        <Timeline position="alternate">
           {TIMELINES.map((item, index) => (
             <OrderItem key={item.title} item={item} isLast={index === TIMELINES.length - 1} />
           ))}

@@ -55,7 +55,6 @@ export default function LanguagePopover() {
       >
         <img src={LANGS[0].icon} alt={LANGS[0].label} />
       </IconButton>
-
       <MenuPopover open={open} onClose={handleClose} anchorEl={anchorRef.current}>
         <Box sx={{ py: 1 }}>
           {LANGS.map((option) => (

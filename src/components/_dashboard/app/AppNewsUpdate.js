@@ -3,14 +3,24 @@ import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import { formatDistance } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 // material
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Link,
+  Card,
+  Button,
+  Divider,
+  Typography,
+  CardHeader,
+  InputLabel,
+  Select,
+  MenuItem,
+  CardMedia
+} from '@mui/material';
+import MintingImage from '../../../assets/MINTING_NFT_01.webp';
 // utils
 import { mockImgCover } from '../../../utils/mockImages';
-//
-import Scrollbar from '../../Scrollbar';
-
 // ----------------------------------------------------------------------
 
 const NEWS = [...Array(5)].map((_, index) => {
@@ -23,7 +33,7 @@ const NEWS = [...Array(5)].map((_, index) => {
   };
 });
 
-// ----------------------------------------------------------------------
+//   ----------------------------------------------------------------------
 
 NewsItem.propTypes = {
   news: PropTypes.object.isRequired
@@ -60,27 +70,45 @@ function NewsItem({ news }) {
 export default function AppNewsUpdate() {
   return (
     <Card>
-      <CardHeader title="News Update" />
-
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {NEWS.map((news) => (
-            <NewsItem key={news.title} news={news} />
-          ))}
-        </Stack>
-      </Scrollbar>
-
+      <CardHeader title="Mint your own Thrones" />
       <Divider />
-
       <Box sx={{ p: 2, textAlign: 'right' }}>
-        <Button
-          to="#"
-          size="small"
-          color="inherit"
-          component={RouterLink}
-          endIcon={<Icon icon={arrowIosForwardFill} />}
+        <p>
+          This will explain the process of minting a throne and having it be sent to their
+          OpenSea/Coinbase. Price, discuss fair distrubution randomness
+        </p>
+        <CardMedia component="img" src={MintingImage} />
+        <InputLabel id="demo-simple-select-standard-label">Mint</InputLabel>
+        <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={1}
+          onChange={null}
+          label="mint #"
+          width="5rem"
         >
-          View all
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+        </Select>
+        <Divider />
+        <Button
+          variant="contained"
+          to="#"
+          size="medium"
+          color="inherit"
+          endIcon={<Icon icon="grommet-icons:connect" />}
+        >
+          Connect Wallet
+        </Button>
+        <Button
+          variant="contained"
+          to="#"
+          size="medium"
+          color="inherit"
+          endIcon={<Icon icon="mdi:hand-coin-outline" />}
+        >
+          Mint Throne(s)
         </Button>
       </Box>
     </Card>
